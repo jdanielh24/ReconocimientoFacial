@@ -134,7 +134,7 @@ public class JFrameReconocimiento extends javax.swing.JFrame {
         listaPersonas = directorioDatos.list();
         
         efr = EigenFaceRecognizer.create();
-        efr.read("modeloEingenFace.xml");
+        efr.read("modeloEigenFace.xml");
     }
     
     /**
