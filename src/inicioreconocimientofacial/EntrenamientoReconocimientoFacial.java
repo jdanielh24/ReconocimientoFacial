@@ -59,7 +59,7 @@ public class EntrenamientoReconocimientoFacial {
 	System.out.println("Empezando entrenamiento...");
 	efr.train(imagenes, etiquetasMat);
         
-        efr.write("modeloEingenFace.xml");
+        efr.write("modeloEigenFace.xml");
         System.out.println("El modelo ha sido almacenado");
         
     }
