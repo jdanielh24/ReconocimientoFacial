@@ -27,7 +27,7 @@ public class ReconocimientoFacialPruebas {
         String[] listaPersonas = directorioDatos.list();
         
         EigenFaceRecognizer efr = EigenFaceRecognizer.create();
-        efr.read("modeloEingenFace.xml");
+        efr.read("modeloEigenFace.xml");
         
     }
     
