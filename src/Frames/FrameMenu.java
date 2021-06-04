@@ -6,6 +6,8 @@
 package Frames;
 
 //import javafx.scene.paint.Color;
+import DAO.IUserImp;
+import Modelos.User;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,15 +34,20 @@ public class FrameMenu extends javax.swing.JFrame {
     
     public FrameMenu() {
         initComponents();
+        
+        jLabel4.setVisible(false);
+        jLabel3.setVisible(false);
+        jTextID.setVisible(false);
+        
         this.setTitle("AppReconocimientoFacial");
         this.setSize(748, 441);
         this.setResizable(false);
         this.setBackground(Color.white);
         
         //botones transparentes
-        Add2.setOpaque(false);
-        Add2.setContentAreaFilled(false);
-        Add2.setBorderPainted(false);
+        jButAddUser.setOpaque(false);
+        jButAddUser.setContentAreaFilled(false);
+        jButAddUser.setBorderPainted(false);
         
         Add.setOpaque(false);
         Add.setContentAreaFilled(false);
@@ -102,16 +109,16 @@ public class FrameMenu extends javax.swing.JFrame {
         Identifier = new javax.swing.JButton();
         Exit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextJob = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        Add2 = new javax.swing.JButton();
+        jButAddUser = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -250,60 +257,60 @@ public class FrameMenu extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 630, 60));
 
-        jTextField2.setBackground(new java.awt.Color(164, 201, 217));
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField2.setBorder(null);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 220, -1));
+        jTextID.setBackground(new java.awt.Color(164, 201, 217));
+        jTextID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jTextID.setBorder(null);
+        getContentPane().add(jTextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 220, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/image.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 280, 60));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 280, 60));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("ID");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
 
-        jTextField3.setBackground(new java.awt.Color(164, 201, 217));
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField3.setBorder(null);
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 220, -1));
+        jTextName.setBackground(new java.awt.Color(164, 201, 217));
+        jTextName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jTextName.setBorder(null);
+        getContentPane().add(jTextName, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 220, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/image.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 270, 60));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 270, 60));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Name");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
 
-        jTextField4.setBackground(new java.awt.Color(164, 201, 217));
-        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField4.setBorder(null);
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 220, -1));
+        jTextJob.setBackground(new java.awt.Color(164, 201, 217));
+        jTextJob.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jTextJob.setBorder(null);
+        getContentPane().add(jTextJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 220, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/image.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 270, 60));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 270, 60));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Job Tittle");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
 
-        Add2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/tres.png"))); // NOI18N
-        Add2.setBorder(null);
-        Add2.setBorderPainted(false);
-        Add2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Add2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frames/tres.png"))); // NOI18N
+        jButAddUser.setBorder(null);
+        jButAddUser.setBorderPainted(false);
+        jButAddUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButAddUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Add2MouseEntered(evt);
+                jButAddUserMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                Add2MouseExited(evt);
+                jButAddUserMouseExited(evt);
             }
         });
-        Add2.addActionListener(new java.awt.event.ActionListener() {
+        jButAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Add2ActionPerformed(evt);
+                jButAddUserActionPerformed(evt);
             }
         });
-        getContentPane().add(Add2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 170, 60));
+        getContentPane().add(jButAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 170, 60));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setOpaque(true);
@@ -366,24 +373,24 @@ public class FrameMenu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ExitActionPerformed
 
-    private void Add2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add2MouseEntered
+    private void jButAddUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButAddUserMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_Add2MouseEntered
+    }//GEN-LAST:event_jButAddUserMouseEntered
 
-    private void Add2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add2MouseExited
+    private void jButAddUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButAddUserMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_Add2MouseExited
+    }//GEN-LAST:event_jButAddUserMouseExited
 
-    private void Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add2ActionPerformed
+    private void jButAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButAddUserActionPerformed
         // TODO add your hling code here:
-        String id = jTextField2.getText();
-        String nombre = jTextField3.getText();
-        String jt = jTextField4.getText();
-        
-        agregarUsuario(id,nombre,jt,archivo);
-        JOptionPane.showMessageDialog(this, "usuario agregado");
+        User u = new User(jTextName.getText(), jTextJob.getText());
+        IUserImp ui = new IUserImp();
+        if(ui.addUser(u))
+            JOptionPane.showMessageDialog(this, "Usuario agregado correctamente");
+        else
+            JOptionPane.showMessageDialog(this, "Hubo un problema al agregar el usuario");
                  
-    }//GEN-LAST:event_Add2ActionPerformed
+    }//GEN-LAST:event_jButAddUserActionPerformed
 
     private void ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewActionPerformed
         // TODO add your handling code here:
@@ -430,10 +437,10 @@ public class FrameMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
-    private javax.swing.JButton Add2;
     private javax.swing.JButton Exit;
     private javax.swing.JButton Identifier;
     private javax.swing.JButton View;
+    private javax.swing.JButton jButAddUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -445,9 +452,9 @@ public class FrameMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextID;
+    private javax.swing.JTextField jTextJob;
+    private javax.swing.JTextField jTextName;
     // End of variables declaration//GEN-END:variables
 
 }

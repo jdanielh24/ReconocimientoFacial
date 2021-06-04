@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author jdanielh24
  */
-public class BaseDatos {
+public class Conexion {
     
     Connection conn;
 
@@ -24,22 +24,22 @@ public class BaseDatos {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ReconocimientoFacial?zeroDateTimeBehavior=CONVERT_TO_NULL", "root", "");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public BaseDatos(){
+    public Conexion(){
         conectar();
     }
     
     public static void main(String[] args){
-        new BaseDatos();
+        new Conexion();
     }
     
 }

@@ -24,6 +24,11 @@ public class User {
         this.jobTitle = jobTitle;
     }
 
+    public User(String name, String jobTitle) {
+        this.name = name;
+        this.jobTitle = jobTitle;
+    }
+    
     public String getJobTitle() {
         return jobTitle;
     }
@@ -34,10 +39,6 @@ public class User {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
