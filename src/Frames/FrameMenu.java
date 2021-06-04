@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import org.opencv.core.Core;
 import org.xml.sax.Attributes;
 
 /**
@@ -149,6 +150,11 @@ public class FrameMenu extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 AddMouseReleased(evt);
+            }
+        });
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
             }
         });
 
@@ -385,8 +391,13 @@ public class FrameMenu extends javax.swing.JFrame {
         // TODO add your hling code here:
         User u = new User(jTextName.getText(), jTextJob.getText());
         IUserImp ui = new IUserImp();
-        if(ui.addUser(u))
+        if(ui.addUser(u)){
             JOptionPane.showMessageDialog(this, "Usuario agregado correctamente");
+            JFrameVideo fVideo = new JFrameVideo(u, this);
+            fVideo.setVisible(true);
+            this.setVisible(false);
+        }
+            
         else
             JOptionPane.showMessageDialog(this, "Hubo un problema al agregar el usuario");
                  
@@ -399,10 +410,15 @@ public class FrameMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_ViewActionPerformed
 
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

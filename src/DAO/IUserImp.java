@@ -28,7 +28,13 @@ public class IUserImp implements IUser{
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getJobTitle());
             stmt.executeUpdate();
-            return true;
+            
+            sql = "SELECT LAST_INSERT_ID()";
+            ResultSet rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                u.setId(rs.getInt(1));
+                return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
         }
