@@ -192,6 +192,11 @@ public class FrameMenu extends javax.swing.JFrame {
                 IdentifierMouseExited(evt);
             }
         });
+        Identifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdentifierActionPerformed(evt);
+            }
+        });
 
         Exit.setBackground(new java.awt.Color(15, 32, 39));
         Exit.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -413,6 +418,13 @@ public class FrameMenu extends javax.swing.JFrame {
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AddActionPerformed
+
+    private void IdentifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentifierActionPerformed
+        // TODO add your handling code here:
+        JFrameReconocimiento fr = new JFrameReconocimiento(this);
+        fr.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_IdentifierActionPerformed
 
     /**
      * @param args the command line arguments

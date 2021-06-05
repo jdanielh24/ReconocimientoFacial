@@ -146,7 +146,7 @@ public class JFrameVideo extends javax.swing.JFrame {
         this.getContentPane().setBackground(new Color(15,32,39));
         jLabelAdvertencia.setVisible(false);
         
-        usuario = usuario;
+        this.usuario = usuario;
         jLabelUsuario.setText(usuario.getName());
         this.fMenu = fMenu;
         
@@ -169,7 +169,6 @@ public class JFrameVideo extends javax.swing.JFrame {
         jButtonDetener = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButtonGuardar = new javax.swing.JButton();
         jLabelAdvertencia = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
 
@@ -220,15 +219,6 @@ public class JFrameVideo extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
         jLabel1.setText("User: ");
 
-        jButtonGuardar.setBackground(new java.awt.Color(153, 223, 236));
-        jButtonGuardar.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
-        jButtonGuardar.setText("Save");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
-            }
-        });
-
         jLabelAdvertencia.setBackground(new java.awt.Color(153, 223, 236));
         jLabelAdvertencia.setForeground(new java.awt.Color(254, 254, 254));
         jLabelAdvertencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -257,8 +247,7 @@ public class JFrameVideo extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(218, 218, 218))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(123, 123, 123))
         );
@@ -269,7 +258,6 @@ public class JFrameVideo extends javax.swing.JFrame {
                 .addComponent(jLabelAdvertencia)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGuardar)
                     .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -312,13 +300,6 @@ public class JFrameVideo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // TODO add your handling code here:
-        idUser = jLabelUsuario.getText().replaceAll("\\s+", "");
-        crearCarpetaPersona();
-        jButtonIniciar.setEnabled(true);
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -357,7 +338,6 @@ public class JFrameVideo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDetener;
-    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonIniciar;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;

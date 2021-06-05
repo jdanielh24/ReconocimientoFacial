@@ -10,6 +10,7 @@ import Modelos.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +38,14 @@ public class IUserImp implements IUser{
             }
         } catch (SQLException ex) {
             Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(conn.conn != null){
+                try {
+                    conn.conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         return false;
     }
@@ -52,7 +61,33 @@ public class IUserImp implements IUser{
     }
 
     @Override
-    public User showUser(int id) {
+    public User getUser(int id) {
+        Conexion conn = new Conexion();
+        String sql = "SELECT * FROM user WHERE id=?";
+        try {
+            PreparedStatement stmt = conn.conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                User u = new User(rs.getInt(1), rs.getString(2), rs.getString(3));
+                return u;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(conn.conn != null){
+                try {
+                    conn.conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<User> listUsers() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -6,6 +6,7 @@
 package DAO.Interfaces;
 
 import Modelos.User;
+import java.util.List;
 
 /**
  *
@@ -15,5 +16,6 @@ public interface IUser {
     public boolean addUser(User u);
     public boolean deleteUser(int id);
     public boolean updateUser(int id);
-    public User showUser(int id);
+    public User getUser(int id);
+    public List<User> listUsers();
 }

@@ -26,7 +26,6 @@ public class FrameVer extends javax.swing.JFrame {
     /**
      * Creates new form FrameMenu
      */
-    File  archivo;
     DefaultTableModel modelo;
     
     public ArrayList < String> leerUsuarios(File archivo){
@@ -76,13 +75,13 @@ public class FrameVer extends javax.swing.JFrame {
         Exit.setContentAreaFilled(false);
         Exit.setBorderPainted(false);
         
-         archivo  = new File("C:\\Users\\manue\\Documents\\Castroso\\interfaz\\usuarios.txt");
+         //archivo  = new File("C:\\Users\\manue\\Documents\\Castroso\\interfaz\\usuarios.txt");
          
          //Ver usuarios
          modelo = (DefaultTableModel)jTable1.getModel();
         jTable1.setShowGrid(true);
         
-         ArrayList <String> us = leerUsuarios(archivo);
+         //ArrayList <String> us = leerUsuarios(archivo);
          modelo.setRowCount(us.size()/3);
          int id = 0;
          int nom = 1;
