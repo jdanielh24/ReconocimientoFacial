@@ -405,11 +405,8 @@ public class FrameVer extends javax.swing.JFrame {
         int id = Integer.parseInt(jTextID.getText().trim());
         if (new IUserImp().deleteUser(id)) {
             new IImageImp().deleteImages(id);
-            System.out.println("error 1");
             listarUsuarios();
-            System.out.println("error 2");
             limpiarTexts();
-            System.out.println("error 3");
             JOptionPane.showMessageDialog(rootPane, "User successfully removed");
         } else
             JOptionPane.showMessageDialog(rootPane, "User couldn't be removed");
@@ -432,6 +429,14 @@ public class FrameVer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Make sure you have a selected row");
             return;
         }
+        int id = Integer.parseInt(jTextID.getText().trim());
+        if (new IUserImp().updateUser(new User(id, jTextName.getText().trim(), 
+                                            jTextJob.getText().trim()))) {
+            listarUsuarios();
+            limpiarTexts();
+            JOptionPane.showMessageDialog(rootPane, "User successfully updated");
+        } else
+            JOptionPane.showMessageDialog(rootPane, "User couldn't be updated");
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     /**
