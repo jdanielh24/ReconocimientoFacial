@@ -19,11 +19,11 @@ import org.opencv.face.EigenFaceRecognizer;
  */
 public class EntrenamientoReconocimientoFacial {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public EntrenamientoReconocimientoFacial(){
+        entrenar();
+    }
+    
+    private void entrenar(){
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         
         String rutaBase = System.getProperty("user.dir") + "/Datos/";
@@ -61,7 +61,14 @@ public class EntrenamientoReconocimientoFacial {
         
         efr.write("modeloEigenFace.xml");
         System.out.println("El modelo ha sido almacenado");
-        
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        new EntrenamientoReconocimientoFacial().entrenar();
     }
     
 }
