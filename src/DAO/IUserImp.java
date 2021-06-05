@@ -10,6 +10,7 @@ import Modelos.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,11 +85,34 @@ public class IUserImp implements IUser{
             }
         }
         return null;
+        
     }
 
     @Override
     public List<User> listUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List users = new ArrayList<User>();
+        Conexion conn = new Conexion();
+        String sql = "SELECT * FROM user";
+        PreparedStatement stmt;
+        try {
+            stmt = conn.conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                users.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            }
+            return users;
+        } catch (SQLException ex) {
+            Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(conn.conn != null)
+                try {
+                    conn.conn.close();
+                    return users;
+            } catch (SQLException ex) {
+                Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return users;
     }
     
 }

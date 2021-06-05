@@ -6,7 +6,9 @@
 package Frames;
 
 //import javafx.scene.paint.Color;
+import DAO.IUserImp;
 import Frames.FrameMenu;
+import Modelos.User;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,77 +29,57 @@ public class FrameVer extends javax.swing.JFrame {
     /**
      * Creates new form FrameMenu
      */
-    DefaultTableModel modelo;
-    
-    public ArrayList < String> leerUsuarios(File archivo){
-        ArrayList<String> usuarios = new ArrayList();
-        try{    
-               if(archivo.exists()){
-                   BufferedReader br  = new BufferedReader(new FileReader(archivo));
-                   String linea;
-                   while((linea = br.readLine()) != null)
-                         usuarios.add(linea);
-               }  
-               else
-                   JOptionPane.showMessageDialog(this, "El archivo no existe");
-               
-        }catch(IOException e){
-                JOptionPane.showMessageDialog(this, "ha ocurrido un error!");
-            }
-            
-        return usuarios;
+    private DefaultTableModel modelo;
+    private List<User> usuarios;
+
+    public void listarUsuarios() {
+        modelo = (DefaultTableModel) jTable1.getModel();
+        jTable1.setShowGrid(true);
+
+        modelo.setRowCount(usuarios.size());
+        for (int i = 0; i < usuarios.size(); i++) {
+            modelo.setValueAt(usuarios.get(i).getId(), i, 0);
+            modelo.setValueAt(usuarios.get(i).getName(), i, 1);
+            modelo.setValueAt(usuarios.get(i).getJobTitle(), i, 2);
+
+        }
     }
-    
+
     public FrameVer() {
         initComponents();
+
+        usuarios = new IUserImp().listUsers();
+
+        this.getContentPane().setBackground(new Color(35, 74, 89));
         this.setTitle("AppReconocimientoFacial");
         this.setSize(748, 441);
         this.setResizable(false);
         this.setBackground(Color.white);
-        
+
         //botones transparentes
         //Add2.setOpaque(false);
         //Add2.setContentAreaFilled(false);
         //Add2.setBorderPainted(false);
-        
         Add.setOpaque(false);
         Add.setContentAreaFilled(false);
         Add.setBorderPainted(false);
-        
+
         View.setOpaque(false);
         View.setContentAreaFilled(false);
         View.setBorderPainted(false);
-        
+
         Identifier.setOpaque(false);
         Identifier.setContentAreaFilled(false);
         Identifier.setBorderPainted(false);
-        
+
         Exit.setOpaque(false);
         Exit.setContentAreaFilled(false);
         Exit.setBorderPainted(false);
+
+        listarUsuarios();
         
-         //archivo  = new File("C:\\Users\\manue\\Documents\\Castroso\\interfaz\\usuarios.txt");
-         
-         //Ver usuarios
-         modelo = (DefaultTableModel)jTable1.getModel();
-        jTable1.setShowGrid(true);
-        
-         //ArrayList <String> us = leerUsuarios(archivo);
-         modelo.setRowCount(us.size()/3);
-         int id = 0;
-         int nom = 1;
-         int jt = 2;
-         for(int i=0;i<us.size()/3;i++){
-              modelo.setValueAt(us.get(id), i, 0);
-              modelo.setValueAt(us.get(nom), i, 1);
-              modelo.setValueAt(us.get(jt), i, 2);
-              id += 3;
-              nom += 3;
-              jt += 3;
-         }
-         
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,6 +100,13 @@ public class FrameVer extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
+        jButtonDelete = new javax.swing.JButton();
+        jButtonList = new javax.swing.JButton();
+        jTextJob = new javax.swing.JTextField();
+        jTextID = new javax.swing.JTextField();
+        jButtonUpdate = new javax.swing.JButton();
+        jTextName = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(250, 250, 250));
@@ -219,7 +209,7 @@ public class FrameVer extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 30, Short.MAX_VALUE)
+                .addGap(0, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Identifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(View, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -240,19 +230,19 @@ public class FrameVer extends javax.swing.JFrame {
                 .addComponent(View, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(Identifier, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 420));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 410));
 
         jLabel1.setBackground(new java.awt.Color(35, 74, 89));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("        View Users");
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 580, 60));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 640, 60));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -272,11 +262,47 @@ public class FrameVer extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 480, 90));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 480, 230));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setOpaque(true);
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 620, 350));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 610, 280));
+
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 140, 30));
+
+        jButtonList.setText("List users");
+        getContentPane().add(jButtonList, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 150, 30));
+        getContentPane().add(jTextJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 140, 30));
+
+        jTextID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextIDActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 150, 30));
+
+        jButtonUpdate.setText("Update");
+        getContentPane().add(jButtonUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 150, 30));
+        getContentPane().add(jTextName, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 150, 30));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 500, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -289,45 +315,45 @@ public class FrameVer extends javax.swing.JFrame {
     private void AddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseEntered
         // TODO add your handling code here:
         Add.setOpaque(true);
-        Add.setBackground(new Color(63,85,96));
+        Add.setBackground(new Color(63, 85, 96));
     }//GEN-LAST:event_AddMouseEntered
 
     private void ViewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewMouseEntered
         // TODO add your handling code here:
         View.setOpaque(true);
-        View.setBackground(new Color(63,85,96));
+        View.setBackground(new Color(63, 85, 96));
     }//GEN-LAST:event_ViewMouseEntered
 
     private void IdentifierMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IdentifierMouseEntered
         // TODO add your handling code here:
         Identifier.setOpaque(true);
-        Identifier.setBackground(new Color(63,85,96));
+        Identifier.setBackground(new Color(63, 85, 96));
     }//GEN-LAST:event_IdentifierMouseEntered
 
     private void AddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseExited
         // TODO add your handling code here:
-        Add.setBackground(new Color(15,32,39));
+        Add.setBackground(new Color(15, 32, 39));
     }//GEN-LAST:event_AddMouseExited
 
     private void ExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseEntered
         // TODO add your handling code here:
         Exit.setOpaque(true);
-        Exit.setBackground(new Color(63,85,96));
+        Exit.setBackground(new Color(63, 85, 96));
     }//GEN-LAST:event_ExitMouseEntered
 
     private void ViewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewMouseExited
         // TODO add your handling code here:
-        View.setBackground(new Color(15,32,39));
+        View.setBackground(new Color(15, 32, 39));
     }//GEN-LAST:event_ViewMouseExited
 
     private void IdentifierMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IdentifierMouseExited
         // TODO add your handling code here:
-        Identifier.setBackground(new Color(15,32,39));
+        Identifier.setBackground(new Color(15, 32, 39));
     }//GEN-LAST:event_IdentifierMouseExited
 
     private void ExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseExited
         // TODO add your handling code here:
-        Exit.setBackground(new Color(15,32,39));
+        Exit.setBackground(new Color(15, 32, 39));
     }//GEN-LAST:event_ExitMouseExited
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
@@ -341,6 +367,14 @@ public class FrameVer extends javax.swing.JFrame {
         fm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AddActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,13 +419,20 @@ public class FrameVer extends javax.swing.JFrame {
     private javax.swing.JButton Exit;
     private javax.swing.JButton Identifier;
     private javax.swing.JButton View;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonList;
+    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextID;
+    private javax.swing.JTextField jTextJob;
+    private javax.swing.JTextField jTextName;
     // End of variables declaration//GEN-END:variables
 
 }
