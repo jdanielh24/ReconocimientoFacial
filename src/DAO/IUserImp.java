@@ -53,7 +53,25 @@ public class IUserImp implements IUser{
 
     @Override
     public boolean deleteUser(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Conexion conn = new Conexion();
+        String sql = "DELETE FROM user WHERE id=?";
+        try {
+            PreparedStatement stmt = conn.conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(conn.conn != null){
+                try {
+                    conn.conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(IUserImp.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return false;
     }
 
     @Override

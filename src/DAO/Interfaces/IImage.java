@@ -12,6 +12,6 @@ import Modelos.Image;
  * @author jdanielh24
  */
 public interface IImage {
-    public boolean addImage(Image u);
-    public boolean deleteImage(int id);
+    public boolean addImages(Image u);
+    public boolean deleteImages(int id);
 }

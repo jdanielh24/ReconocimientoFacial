@@ -6,18 +6,15 @@
 package Frames;
 
 //import javafx.scene.paint.Color;
+import DAO.IImageImp;
 import DAO.IUserImp;
 import Frames.FrameMenu;
 import Modelos.User;
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,7 +30,8 @@ public class FrameVer extends javax.swing.JFrame {
     private List<User> usuarios;
 
     public void listarUsuarios() {
-        modelo = (DefaultTableModel) jTable1.getModel();
+        usuarios = new IUserImp().listUsers();
+
         jTable1.setShowGrid(true);
 
         modelo.setRowCount(usuarios.size());
@@ -45,10 +43,28 @@ public class FrameVer extends javax.swing.JFrame {
         }
     }
 
+    public void limpiarTexts() {
+        jTextID.setText("");
+        jTextName.setText("");
+        jTextJob.setText("");
+    }
+
+    public void registroSeleccionado() {
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                if (modelo.getRowCount() > 0) {
+                    jTextID.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                    jTextName.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+                    jTextJob.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                }
+            }
+        });
+    }
+
     public FrameVer() {
         initComponents();
 
-        usuarios = new IUserImp().listUsers();
+        modelo = (DefaultTableModel) jTable1.getModel();
 
         this.getContentPane().setBackground(new Color(35, 74, 89));
         this.setTitle("AppReconocimientoFacial");
@@ -77,7 +93,8 @@ public class FrameVer extends javax.swing.JFrame {
         Exit.setBorderPainted(false);
 
         listarUsuarios();
-        
+        registroSeleccionado();
+
     }
 
     /**
@@ -277,6 +294,11 @@ public class FrameVer extends javax.swing.JFrame {
         getContentPane().add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 140, 30));
 
         jButtonList.setText("List users");
+        jButtonList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonList, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 150, 30));
         getContentPane().add(jTextJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 140, 30));
 
@@ -288,6 +310,11 @@ public class FrameVer extends javax.swing.JFrame {
         getContentPane().add(jTextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 150, 30));
 
         jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 150, 30));
         getContentPane().add(jTextName, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 150, 30));
 
@@ -370,11 +397,42 @@ public class FrameVer extends javax.swing.JFrame {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
+        if (jTextID.getText().equals("") || jTextName.getText().equals("")
+                || jTextJob.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Make sure you have a selected row");
+            return;
+        }
+        int id = Integer.parseInt(jTextID.getText().trim());
+        if (new IUserImp().deleteUser(id)) {
+            new IImageImp().deleteImages(id);
+            System.out.println("error 1");
+            listarUsuarios();
+            System.out.println("error 2");
+            limpiarTexts();
+            System.out.println("error 3");
+            JOptionPane.showMessageDialog(rootPane, "User successfully removed");
+        } else
+            JOptionPane.showMessageDialog(rootPane, "User couldn't be removed");
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextIDActionPerformed
+
+    private void jButtonListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListActionPerformed
+        // TODO add your handling code here:
+        listarUsuarios();
+        limpiarTexts();
+    }//GEN-LAST:event_jButtonListActionPerformed
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        // TODO add your handling code here:
+        if (jTextID.getText().equals("") || jTextName.getText().equals("")
+                || jTextJob.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Make sure you have a selected row");
+            return;
+        }
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     /**
      * @param args the command line arguments
