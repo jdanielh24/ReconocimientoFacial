@@ -1,6 +1,7 @@
 # JFace
 Proyecto de reconocimiento facial como parte del protocolo de investigación para la materia 'Taller de Investigación II'.
 
+
 ## Descripción 
 La primera etapa para el reconocimiento de una persona es la detección facial, proceso que se realiza a través de un conjunto de imágenes que se obtienen en tiempo real.
 
@@ -8,19 +9,24 @@ El algoritmo empleado para la detección el resto es el de Viola-Jones. Este inc
 
 Para el reconocimiento facial, el algoritmo utlizado es el de Análisis de Componentes Principales (PCA) o también llamada Eigenfaces.
 
+
 ## OpenCV 
 Para realizar la detección de rostros con esta OpenCV se usa el módulo cv: CascadeClassifier, el cual contiene una función para cargar las características de Haar del objeto a detectar, y otra para la detección propiamente dicha.
 
+
 ## Interfaz gráfica
 ![interfaz1](/img/img1.png)
+
 ![interfaz2](/img/img2.png)
+
 ![interfaz3](/img/img3.png)
+
 
 ## Diagramas
 ### Diagrama de casos de uso
 ![Diagrama de casos de uso](/img/img_casosuso.png)
 
-
 ### Diagramas de estados
 ![Diagrama de estados de registro](/img/img_edos1.png)
+
 ![Diagrama de estados de reconocimiento](/img/img_edos2.png)
