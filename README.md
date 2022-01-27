@@ -17,8 +17,6 @@ Para realizar la detección de rostros con esta OpenCV se usa el módulo cv: Cas
 ## Interfaz gráfica
 ![interfaz1](/img/img1.png)
 
-![interfaz2](/img/img2.png)
-
 ![interfaz3](/img/img3.png)
 
 
@@ -27,6 +25,4 @@ Para realizar la detección de rostros con esta OpenCV se usa el módulo cv: Cas
 ![Diagrama de casos de uso](/img/img_casosuso.png)
 
 ### Diagramas de estados
-![Diagrama de estados de registro](/img/img_edos1.png)
-
 ![Diagrama de estados de reconocimiento](/img/img_edos2.png)
