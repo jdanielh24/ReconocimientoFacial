@@ -11,8 +11,16 @@ Para el reconocimiento facial, el algoritmo utlizado es el de Análisis de Compo
 ## OpenCV 
 Para realizar la detección de rostros con esta OpenCV se usa el módulo cv: CascadeClassifier, el cual contiene una función para cargar las características de Haar del objeto a detectar, y otra para la detección propiamente dicha.
 
-## Diagrama de casos de usos
+## Interfaz gráfica
+![interfaz1](/img/img1.png)
+![interfaz2](/img/img2.png)
+![interfaz3](/img/img3.png)
+
+## Diagramas
+### Diagrama de casos de uso
+![Diagrama de casos de uso](/img/img_casosuso.png)
+
+
+### Diagramas de estados
 ![Diagrama de estados de registro](/img/img_edos1.png)
 ![Diagrama de estados de reconocimiento](/img/img_edos2.png)
-
-## Interfaz gráfica
