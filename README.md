@@ -21,8 +21,5 @@ Para realizar la detección de rostros con esta OpenCV se usa el módulo cv: Cas
 
 
 ## Diagramas
-### Diagrama de casos de uso
-![Diagrama de casos de uso](/img/img_casosuso.png)
-
 ### Diagramas de estados
 ![Diagrama de estados de reconocimiento](/img/img_edos2.png)
