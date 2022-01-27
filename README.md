@@ -9,5 +9,5 @@ El algoritmo empleado para la detección el resto es el de Viola-Jones. Este inc
 
 Para el reconocimiento facial, el algoritmo utlizado es el de Análisis de Componentes Principales (PCA) o también llamada Eigenfaces.
 
-OpenCV <h1>
+# OpenCV
 Para realizar la detección de rostros con esta OpenCV se usa el módulo cv: CascadeClassifier, el cual contiene una función para cargar las características de Haar del objeto a detectar, y otra para la detección propiamente dicha.
